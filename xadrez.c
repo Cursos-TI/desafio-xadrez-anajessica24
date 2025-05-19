@@ -1,67 +1,91 @@
 #include <stdio.h>
 
+void moverbispo(int bispo)
+{
+    if(bispo > 0)
+    {
+        printf("Cima\n");
+        printf("Esquerda\n");
+        moverbispo(bispo -1);
+    }
+} 
+
+void moverdireita(int direita)
+{
+    if(direita > 0)
+    {
+        printf("Direita\n");
+        moverdireita(direita -1);
+    }
+} 
+
+void moveresquerda(int esquerda)
+{
+    if(esquerda > 0)
+    {
+        printf("Esquerda\n");
+        moveresquerda(esquerda -1);
+    }
+} 
+
+void movercima(int cima)
+{
+    if(cima > 0)
+    {
+        printf("Cima\n");
+        movercima(cima -1);
+    }
+} 
+
 
 int main() {
-    // Peças
-    int bispo = 0;
-    int rainha = 0;
-    int torre = 0;
+
     int cavalo = 0;
+    int casas = 0;
+    int i;
+    int j;
 
     // Implementação de Movimentação do Bispo
     do
     {
-        printf("Escolha entre 1 e 5:\n");
-        printf("Quantas casas a bispo se move? ");
-        scanf("%d", &bispo);
+        printf("Quantas casas o Bispo deve se mover: ");
+        scanf("%d", &casas);
     } 
-    while (bispo < 1 || bispo > 5);
-    
-    for(int i=0; i < bispo; i++)
+    while (casas < 0 && casas > 5);
+
+    for(int i = 1 ; i < casas; i++)
     {
-        for(int j=0; j < bispo; j++)
-        {
-            if(j == bispo - i - 1)
-            {
-                printf("/");
-            }
-            else
-                printf(" ");
-        }
-        printf("\n");
+        moverbispo(casas);
     }
 
     // Implementação de Movimentação da Torre
-
     do
     {
-        printf("Escolha entre 1 e 5:\n");
-        printf("Quantas casas a torre se move? ");
-        scanf("%d", &torre);
+        printf("Quantas casas a Torre deve se mover: ");
+        scanf("%d", &casas);
     } 
-    while (torre < 1 || torre > 5);
+    while (casas<0 && casas > 5);
     
-    for(int i=0; i < torre; i++)
+    for(i = 0; i < casas; i++)
     {
-        printf("^\n");
+        movercima(casas);
+        break;
     }
 
 
     // Implementação de Movimentação da Rainha
     do
     {
-        printf("Escolha entre 1 e 8:\n");
-        printf("Quantas casas a rainha se move? ");
-        scanf("%d", &rainha);
-        printf("Rainha:\n");
+        printf("Quantas casas a Rainha e deve se mover: ");
+        scanf("%d", &casas);
     } 
-    while (rainha < 1 || rainha > 8);
-    
-    for(int i=0; i < rainha; i++)
+    while (casas < 0 && casas > 8);
+
+    for(i = 0; i < casas; i++)
     {
-        printf("<-");
+        moveresquerda(casas);
+        break;
     }
-    printf("\n");
 
     
     //Movimentação do Cavalo p/ baixo e esquerda
@@ -72,21 +96,16 @@ int main() {
     } 
     while (cavalo != 2);
     
-    for(int i=0; i < 1; i++)
+    for(int i = 1 ; i <= 1; i++)
     {
-        for(int j=0; j < cavalo; j++)
+        for(int j = 0; j < cavalo; j++)
         {
-            printf(" ?\n");
+            movercima(cavalo);
+            break;
         }
-        printf("??\n");
+    moverdireita(i);
+    break;
     }
-
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
-
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
 
     return 0;
 }
